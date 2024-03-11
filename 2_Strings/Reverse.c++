@@ -1,38 +1,45 @@
 #include <iostream>
+#include <string>
 using namespace std;
-// void reverse(char name[],int size){
-//     char temp;
-//     for(int i=0;i<size/2;i++){                         // C language method
-//         temp=name[i];
-//         name[i]=name[size-i-1];
-//         name[size-i-1]=temp;
-//     }
-// }
 
-void reverse(char name[],int size){
+void reverse(string &name){
     int s=0; //start            
-    int e=size-1; //end                                  // C++ language method
+    int e=(name.length())-1; //end                                 
     while(s<e){
         swap(name[s++],name[e--]);
     }
 }
 
+int ReverseWords(string str){
+    string temp;
+    for(int i=0;i<str.length();i++){
+        if (str[i]!=' '){
+            temp.push_back(str[i]);
+        
+        }
+        else{
+            reverse(temp);
+            cout<<temp<<" ";
+            temp.clear();
+        }
+    }
+    //for the last word (becoz we can't access null character in String class)
+    reverse(temp);
+    cout<<temp;
+
+    return 0;
+}
 
 int main(){
-    char name[20];
-    cout<<"Enter your name"<<endl;
-    cin>>name;
+    string input;
+    cout<<"Enter a string:"<<endl;
+    getline(cin, input);
 
-    int size=0;
-    for(int i=0;name[i]!='\0';i++){
-        size++;
-    }
-    
-    reverse(name,size);
-    cout<<"Reversed name="<<name;
-
+    ReverseWords(input);
 
     return 0;
 }
 
 
+
+// if((str[i]>='a' && str[i]<='z')||(str[i]>='A' && str[i]<='Z')){
