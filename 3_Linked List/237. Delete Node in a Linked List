@@ -1,0 +1,28 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void deleteNode(ListNode node) {
+        //Take 3 pointers for Deleting node , then the node after that, then again the node after that.
+        ListNode prev = node;
+        ListNode second = node.next;
+        ListNode first = node.next.next;
+        // shift the values till the end 
+        while(first!=null){
+            prev.val = second.val;
+            prev = prev.next;
+            second = second.next;
+            first = first.next;
+        }
+        // on reaching the end break the link
+        if(first==null){
+            prev.val = second.val;
+            prev.next = null;
+        }
+    }
+}
